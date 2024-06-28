@@ -31,7 +31,7 @@ async function waitForResult(threadId: string, runId: string): Promise<void> {
 
 export async function GET(request: NextRequest) {
     const params = request.nextUrl.searchParams
-    const message = params.get("serach")
+    const message = params.get("search")
     let result = "";
 
     if(message === null) 
