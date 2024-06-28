@@ -9,7 +9,7 @@ const Form = () => {
     const [loading, setLoading] = useState<boolean>(false)
 
     const getData = async () => {
-        const data = await fetch(`http://localhost:3000/api?search=${topic.replace(" ", "+")}+en+tono${tone}`)
+        const data = await fetch(`${process.env.NEXT_PUBLIC_API_NEXT}/api?search=${topic.replace(" ", "+")}+en+tono${tone}`)
         return data.json()
     }
 
@@ -22,9 +22,12 @@ const Form = () => {
             setLoading(true)
             getData().then((message) => {
                 setResult(message.data)
-                setLoading(false)
                 setTopic("")
                 setTone("")
+            }).catch((e) => {
+                alert("No se pudo hacer la petición")
+            }).finally(() => {
+                setLoading(false)
             })
         }
     }
