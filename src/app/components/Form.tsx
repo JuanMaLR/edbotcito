@@ -1,6 +1,7 @@
 "use client"
 
 import { useState } from "react"
+import Loader from "./Loader"
 
 const Form = () => {
     const [tone, setTone] = useState("")
@@ -52,15 +53,11 @@ const Form = () => {
                     <input type="submit" disabled={loading} value={`${loading ? "cargando..." : "Enviar"}`} className="bg-sky-600 hover:bg-sky-800 py-2 px-4 rounded-lg cursor-pointer"/>
                 </form>
             </div>
-            {result !== '' && <div className="result-section">
-                <h2>Historia:</h2>
+            { loading && <Loader />}
+            {result !== '' && <div className="result-section mt-12 p-4 border-x-2 border-gray-600">
                 <p>{result}</p>
             </div>
             }
-            <section className="mt-8 p-4 border-x-2 border-gray-600">
-                <h2>Acerca de nosotros</h2>
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quae itaque magni perspiciatis repellendus, consequatur modi asperiores earum repudiandae ad exercitationem voluptas natus ut quos odio quis tempore rem placeat accusantium.</p>
-            </section>
         </>
     )
 }
